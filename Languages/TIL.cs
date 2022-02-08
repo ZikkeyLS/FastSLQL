@@ -72,11 +72,16 @@ namespace FastSLQL
             SLDB database = FSLQL.GetDB(dbName);
             FSLQL.RemoveDBase(database);
 
-            string dbStructureFirst = database.GetDBStructure().Split(" | ")[0];
+            for(int i = 0; i < database.GetDBStructure().Split(" | ").Length; i++)
+            {
+                string dbStructureFirst = database.GetDBStructure().Split(" | ")[i];
 
-            foreach (SLDB sldb in FSLQL.SLDBases)
-                if (sldb.GetDBStructure().Split(" | ")[0] == dbStructureFirst && dbName.ToLower() != sldb.AssemblyName)
-                    File.Delete(sldb.Directory);
+                foreach (SLDB sldb in FSLQL.SLDBases)
+                    if(dbName.ToLower() != sldb.AssemblyName)
+                        for (int a = 0; a < sldb.GetDBStructure().Split(" | ").Length; a++)
+                            if (sldb.GetDBStructure().Split(" | ")[i] == dbStructureFirst)
+                                File.Delete(sldb.Directory);
+            }
 
             File.Delete(directory);
 

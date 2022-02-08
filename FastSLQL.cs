@@ -12,18 +12,28 @@ namespace FastSLQL
         public static string DBDirectory { get; private set; } = "";
         public static readonly List<SLDB> SLDBases = new List<SLDB>();
 
-        public static SLDB GetDB(string name)
+        public static void Load(string dbDirectory = "")
         {
-            if (SLDBases.Count == 0)
-                return null;
-            
-            foreach(SLDB database in SLDBases)
-            {
-                if (database.AssemblyName == name.ToLower()) 
-                    return database;
-            }
+            DBDirectory = dbDirectory;
 
-            return null;
+            if (Directory.Exists(dbDirectory) == false)
+                Directory.CreateDirectory(dbDirectory);
+            else
+                LoadDBases(dbDirectory);
+        }
+
+        private static void LoadDBases(string dbDirectory)
+        {
+            foreach (FileInfo file in new DirectoryInfo(dbDirectory).GetFiles())
+            {
+                if (file.Extension == ".sldb")
+                    AddDBase(file);
+            }
+        }
+
+        public static void Link(string dbDirectory)
+        {
+            DBDirectory = dbDirectory;
         }
 
         public static string[] SendCommand(string command)
@@ -74,22 +84,6 @@ namespace FastSLQL
             return SLDBSettings.Logging ? result : new string[] { "" };
         }
 
-        public static void Link(string dbDirectory)
-        {
-            DBDirectory = dbDirectory;
-        }
-
-        public static void Load(string dbDirectory = null)
-        {
-            if(dbDirectory != null)
-                DBDirectory = dbDirectory;
-
-            if (Directory.Exists(dbDirectory) == false)
-                Directory.CreateDirectory(dbDirectory);
-            else
-                LoadDBases(dbDirectory);
-        }
-
         public static string FormatDirectory(string databaseName)
         {
             RemoveExtraPathSigns();
@@ -104,18 +98,23 @@ namespace FastSLQL
             return db;
         }
 
+        public static SLDB GetDB(string name)
+        {
+            if (SLDBases.Count == 0)
+                return null;
+
+            foreach (SLDB database in SLDBases)
+            {
+                if (database.AssemblyName == name.ToLower())
+                    return database;
+            }
+
+            return null;
+        }
+
         public static void RemoveDBase(SLDB database)
         {
             SLDBases.Remove(database);
-        }
-
-        private static void LoadDBases(string dbDirectory)
-        {
-            foreach (FileInfo file in new DirectoryInfo(dbDirectory).GetFiles())
-            {
-                if (file.Extension == ".sldb")
-                    AddDBase(file);
-            }
         }
 
         private static void RemoveExtraPathSigns()
