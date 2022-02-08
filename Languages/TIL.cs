@@ -16,13 +16,13 @@ namespace FastSLQL
             else
                 return CommandStatus.DBAlreadyExists(dbName);
 
-            SLDB _db = FSLQL.AddDBase(new FileInfo(directory));
-            _db.WriteDBName(dbName);
+            SLDB db = FSLQL.AddDBase(new FileInfo(directory));
+            db.WriteDBName(dbName);
 
-            string[] _editArguments = new string[3] { "STRUCTURE", arguments[0], arguments[1] };
+            string[] editArguments = new string[3] { dbName, "STRUCTURE", arguments[1] };
 
             if(arguments.Length > 1)
-                Edit(_editArguments);
+                Edit(editArguments);
 
             return CommandStatus.CreateSuccess(dbName);
         }

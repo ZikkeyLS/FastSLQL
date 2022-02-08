@@ -27,11 +27,11 @@ namespace FastSLQL.Format
                 builder.Append("U");
 
             if (unique && !minDefault)
-                builder.Append(",");
+                builder.Append(", ");
 
             if(min != -1)
             {
-                builder.Append($"Min({min}),");
+                builder.Append($"Min({min}), ");
                 builder.Append($"Max({max})");
             }
 
