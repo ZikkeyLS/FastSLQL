@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastSLQL", "FastSLQL.csproj", "{89D1BCDB-2652-4FFA-BC6A-3722626B7476}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastSLQL", "FastSLQL.csproj", "{12BAB279-1D97-430F-AEFF-26D296267D1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,19 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{89D1BCDB-2652-4FFA-BC6A-3722626B7476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89D1BCDB-2652-4FFA-BC6A-3722626B7476}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89D1BCDB-2652-4FFA-BC6A-3722626B7476}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89D1BCDB-2652-4FFA-BC6A-3722626B7476}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D6528C25-AE2B-40C4-A513-5DF079F5486B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6528C25-AE2B-40C4-A513-5DF079F5486B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6528C25-AE2B-40C4-A513-5DF079F5486B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6528C25-AE2B-40C4-A513-5DF079F5486B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12BAB279-1D97-430F-AEFF-26D296267D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12BAB279-1D97-430F-AEFF-26D296267D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12BAB279-1D97-430F-AEFF-26D296267D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12BAB279-1D97-430F-AEFF-26D296267D1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {559A128F-C17E-4836-BC29-58FF90E6F200}
+		SolutionGuid = {B026B658-E849-4E0E-893B-9CACF41FDC11}
 	EndGlobalSection
 EndGlobal
