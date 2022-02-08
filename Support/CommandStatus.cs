@@ -2,7 +2,7 @@
 
 namespace FastSLQL.Support
 {
-    public static class CommandStatus
+    internal static class CommandStatus
     {
         #region BasicExceptions
         public static string[] UnknownCommand(string cname) => new string[] { $"Unknown command with name: {cname}!" };

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace FastSLQL
 {
-    public static class TIL
+    internal static class TIL
     {
         #region Create
         public static string[] Create(string[] arguments)

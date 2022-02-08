@@ -2,7 +2,7 @@
 
 namespace FastSLQL
 {
-    public class FastSLQLException : Exception
+    internal class FastSLQLException : Exception
     {
         public FastSLQLException(string message)
             : base(message) { }

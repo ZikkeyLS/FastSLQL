@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace FastSLQL.Format
 {
-    public static class CommandFormatter
+    internal static class CommandFormatter
     {
         public static string[] SplitCommand(this string command)
         {

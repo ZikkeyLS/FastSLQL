@@ -5,7 +5,7 @@ namespace FastSLQL.Format
 {
     public class StructureConstructor
     {
-        public List<string> args = new List<string>();
+        public List<string> arguments = new List<string>();
 
         #region AddArgument
         public void AddArgument(string name) => AddArgument(name, false, -1, -1);
@@ -38,7 +38,7 @@ namespace FastSLQL.Format
             if (unique || !minDefault)
                 builder.Append(")");
 
-            args.Add(builder.ToString());
+            arguments.Add(builder.ToString());
         }
         #endregion
 
@@ -48,10 +48,10 @@ namespace FastSLQL.Format
 
             builder.Append("(");
 
-            for(int i = 0; i < args.Count; i++)
+            for(int i = 0; i < arguments.Count; i++)
             {
-                string additive = i == args.Count - 1 ? "" : " | ";
-                builder.Append(args[i] + additive);
+                string additive = i == arguments.Count - 1 ? "" : " | ";
+                builder.Append(arguments[i] + additive);
             }
 
             builder.Append(")");

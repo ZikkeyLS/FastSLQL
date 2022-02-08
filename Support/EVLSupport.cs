@@ -3,7 +3,7 @@ using System.Text;
 
 namespace FastSLQL.Support
 {
-    public static class EVLSupport
+    internal static class EVLSupport
     {
         #region Get
         public static void AddAllElementsList(List<string> result, string[] arguments, SLDB database)

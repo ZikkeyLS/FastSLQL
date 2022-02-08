@@ -3,13 +3,11 @@ using System.Text;
 
 namespace FastSLQL.Support
 {
-    public static class SLDBSupport
+    internal static class SLDBSupport
     {
         #region Checks
         public static bool MinLenghtCorrect(int lenght, string element) => lenght == -1 || element.Length - SLDBSettings.ShortSetupLenght >= lenght;
         public static bool MaxLenghtCorrect(int lenght, string element) => lenght == -1 || element.Length - SLDBSettings.ShortSetupLenght <= lenght;
-        public static bool IsElement(string value) => value.Contains(" | ") || value.Contains("\"");
-        public static string[] GetElementParametres(string element) => element.Split(" | ");
         #endregion
 
         #region Get

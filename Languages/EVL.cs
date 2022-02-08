@@ -4,7 +4,7 @@ using System.IO;
 
 namespace FastSLQL
 {
-    public static class EVL
+    internal static class EVL
     {
         #region Get
         public static string[] Get(string[] arguments)

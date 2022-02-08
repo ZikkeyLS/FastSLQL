@@ -1,4 +1,4 @@
-﻿
+﻿using FastSLQL.Format;
 using System.Text;
 
 namespace FastSLQL.Format
@@ -21,7 +21,7 @@ namespace FastSLQL.Format
         public static string EVLGet(string name, string instruction, string subInstruction, string[] filters = null) => $"GET {name} {instruction} {subInstruction} {ParseFilters(filters)}";
 
         public static string EVLInsert(string name, string structure) => $"INSERT {name} {structure}";
-        public static string EVLInsert(string name, StructureConstructor structure) => $"INSERT {name} {structure}";
+        public static string EVLInsert(string name, ElementConstructor element) => $"INSERT {name} {element}";
 
         public static string EVLChange(string name, int id, string finalValue) => $"CHANGE {name} {id} with {finalValue}";
         public static string EVLChange(string name, string[] filters, string finalValue) => $"CHANGE {name} {ParseFilters(filters)} with {finalValue}";
