@@ -1,9 +1,8 @@
-﻿using FastSLQL.Format;
-using System.Text;
+﻿using System.Text;
 
 namespace FastSLQL.Format
 {
-    public static class CommandConstuctor
+    public static class CommandConstructor
     {
         #region TIL
         public static string TILCreate(string name) => $"CREATE {name}";
