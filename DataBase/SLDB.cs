@@ -1,4 +1,6 @@
-﻿using FastSLQL.Support;
+﻿using FastSLQL.Format;
+using FastSLQL.Support;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,7 +31,12 @@ namespace FastSLQL
             _readed = true;
 
             string directory = FSLQL.FormatDirectory(AssemblyName);
-            _data = File.ReadAllLines(directory).ToList();
+            
+            string[] fileData = File.ReadAllLines(directory);
+
+            fileData = TableSerializer.DeSerialize(fileData);
+
+            _data = fileData.ToList();
 
             if (_data.Count <= 1)
             {
@@ -103,7 +110,10 @@ namespace FastSLQL
         #region Write
         private void RewriteData()
         {
-            File.WriteAllLines(_dbFile.FullName, _data);
+            string[] result = new string[Data.Length];
+            result = TableSerializer.Serialize(result, Data);
+
+            File.WriteAllLines(_dbFile.FullName, result);
         }
 
         private void RenameFile(string name)
