@@ -1,6 +1,5 @@
 ﻿using FastSLQL.Format;
 using FastSLQL.Support;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
