@@ -30,19 +30,7 @@ namespace FastSLQL
         {
             _readed = true;
 
-            string directory = FSLQL.FormatDirectory(AssemblyName);
-            
-            string[] fileData = File.ReadAllLines(directory);
-
-            fileData = TableSerializer.DeSerialize(fileData);
-
-            _data = fileData.ToList();
-
-            if (_data.Count <= 1)
-            {
-                _data.AddRange(new string[] { "", "", "" });
-                return;
-            }
+            _data = DBFileSystem.DeSerialize(Directory).ToList();
 
             UpdateParametres();
         }
@@ -110,10 +98,7 @@ namespace FastSLQL
         #region Write
         private void RewriteData()
         {
-            string[] result = new string[Data.Length];
-            result = TableSerializer.Serialize(result, Data);
-
-            File.WriteAllLines(_dbFile.FullName, result);
+            DBFileSystem.Serialize(Directory, Data);
         }
 
         private void RenameFile(string name)
