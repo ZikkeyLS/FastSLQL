@@ -6,8 +6,8 @@ namespace FastSLQL.Support
     internal static class SLDBSupport
     {
         #region Checks
-        public static bool MinLenghtCorrect(int lenght, string element) => lenght == -1 || element.Length - SLDBSettings.ShortSetupLenght >= lenght;
-        public static bool MaxLenghtCorrect(int lenght, string element) => lenght == -1 || element.Length - SLDBSettings.ShortSetupLenght <= lenght;
+        public static bool MinLenghtCorrect(int lenght, string element) => lenght == -1 || element.Length - FSLQLSettings.ShortSetupLenght >= lenght;
+        public static bool MaxLenghtCorrect(int lenght, string element) => lenght == -1 || element.Length - FSLQLSettings.ShortSetupLenght <= lenght;
         #endregion
 
         #region Get
@@ -55,7 +55,7 @@ namespace FastSLQL.Support
                 }
             }
 
-            return new int[SLDBSettings.LongSetupLenght] { unique, min, max };
+            return new int[FSLQLSettings.LongSetupLenght] { unique, min, max };
         }
 
         private static string GetSplittedStructureValueName(string fullName)
@@ -65,7 +65,7 @@ namespace FastSLQL.Support
 
         public static string[] GetFilteredElements(List<string> data, Dictionary<int, string> formedRestrictions)
         {
-            int index = SLDBSettings.LongSetupLenght;
+            int index = FSLQLSettings.LongSetupLenght;
             List<string> result = new List<string>();
 
             for (int i = index; i < data.Count; i++)
@@ -91,7 +91,7 @@ namespace FastSLQL.Support
         #region Set
         public static void SetValueThrowBrackets(string[] values, int i, ref int value)
         {
-            if (values[i][SLDBSettings.LongSetupLenght] == '(')
+            if (values[i][FSLQLSettings.LongSetupLenght] == '(')
             {
                 StringBuilder stringBuilder = new StringBuilder();
 

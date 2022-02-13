@@ -81,10 +81,10 @@ namespace FastSLQL
                 result = CommandStatus.UnknownException(ex);
             }
 
-            return SLDBSettings.Logging ? result : new string[] { "" };
+            return FSLQLSettings.Logging ? result : new string[] { "" };
         }
 
-        public static string FormatDirectory(string databaseName)
+        internal static string FormatDirectory(string databaseName)
         {
             RemoveExtraPathSigns();
             string subDirectory = DBDirectory != "" ? $"{DBDirectory}/" : "";

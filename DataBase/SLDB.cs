@@ -51,7 +51,7 @@ namespace FastSLQL
         {
             ReadCheck();
 
-            index += SLDBSettings.LongSetupLenght; // skip information data and go to values
+            index += FSLQLSettings.LongSetupLenght; // skip information data and go to values
             if (_data.Count >= index)
                 return _data[index - 1];
 
@@ -60,10 +60,10 @@ namespace FastSLQL
 
         public int GetElementIndex(string element)
         {
-            for (int i = SLDBSettings.LongSetupLenght; i < _data.Count; i++)
+            for (int i = FSLQLSettings.LongSetupLenght; i < _data.Count; i++)
             {
                 if (_data[i] == element)
-                    return i - SLDBSettings.ShortSetupLenght;
+                    return i - FSLQLSettings.ShortSetupLenght;
             }
 
             return -1;
@@ -73,7 +73,7 @@ namespace FastSLQL
         {
             ReadCheck();
 
-            int index = SLDBSettings.LongSetupLenght;
+            int index = FSLQLSettings.LongSetupLenght;
             List<string> result = new List<string>();
 
             for (int i = index; i < _data.Count; i++)
@@ -102,7 +102,11 @@ namespace FastSLQL
 
         private void RenameFile(string name)
         {
+            string _oldFile = _dbFile.FullName;
             _dbFile.MoveTo(Path.Combine(_dbFile.Directory.FullName, $"{name}.sldb"));
+
+            if (File.Exists(_oldFile))
+                File.Delete(_oldFile);
         }
 
         public void WriteDBName(string name)
@@ -111,7 +115,6 @@ namespace FastSLQL
             _data[0] = name;
             RewriteData();
             RenameFile(name);
-            _dbFile = new FileInfo(FSLQL.FormatDirectory(name));
         }
 
         public void WriteDBStructure(string structure)
@@ -123,7 +126,7 @@ namespace FastSLQL
             for (int i = 0; i < structure.Length; i++)
                 separator.Append('-');
 
-            _data[SLDBSettings.ShortSetupLenght] = separator.ToString();
+            _data[FSLQLSettings.ShortSetupLenght] = separator.ToString();
             RewriteData();
             UpdateParametres();
         }
@@ -138,7 +141,7 @@ namespace FastSLQL
         public void ChangeElement(int index, string element)
         {
             ReadCheck();
-            _data[index + SLDBSettings.ShortSetupLenght] = element;
+            _data[index + FSLQLSettings.ShortSetupLenght] = element;
             RewriteData();
         }
 
@@ -147,9 +150,9 @@ namespace FastSLQL
         {
             ReadCheck();
 
-            bool result = index >= 0 && index < _data.Count - SLDBSettings.LongSetupLenght;
+            bool result = index >= 0 && index < _data.Count - FSLQLSettings.LongSetupLenght;
             if (result)
-                _data.RemoveAt(index + SLDBSettings.LongSetupLenght);
+                _data.RemoveAt(index + FSLQLSettings.LongSetupLenght);
 
             RewriteData();
 
@@ -190,7 +193,7 @@ namespace FastSLQL
             if (SplittedStructure.Length != splittedData.Length)
                 return false;
 
-            int i = SLDBSettings.LongSetupLenght;
+            int i = FSLQLSettings.LongSetupLenght;
 
             return CheckUniqueParameters(i, splittedData, _exceptionIndex - 1 + i) && CheckMinMaxParameters(splittedData);
         }
@@ -201,10 +204,8 @@ namespace FastSLQL
             {
                 if (index == exceptionIndex)
                 {
-                    if (index + 1 != _data.Count)
-                        continue;
-                    else
-                        break;
+                    index++;
+                    continue;
                 }
 
                 for (int a = 0; a < splittedData.Length; a++)
@@ -226,7 +227,7 @@ namespace FastSLQL
             for (int index = 0; index < splittedData.Length; index++)
             {
                 if (!SLDBSupport.MinLenghtCorrect(StructuresParametres[index][1], splittedData[index])
-                    || !SLDBSupport.MaxLenghtCorrect(StructuresParametres[index][SLDBSettings.ShortSetupLenght], splittedData[index]))
+                    || !SLDBSupport.MaxLenghtCorrect(StructuresParametres[index][FSLQLSettings.ShortSetupLenght], splittedData[index]))
                     return false;
             }
 

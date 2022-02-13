@@ -17,7 +17,7 @@ namespace FastSLQL
 
             List<string> result = new List<string>();
 
-            if (arguments.Length < SLDBSettings.ShortSetupLenght)
+            if (arguments.Length < FSLQLSettings.ShortSetupLenght)
                 return result.ToArray();
 
             SLDB database = FSLQL.GetDB(dbName);
@@ -89,9 +89,7 @@ namespace FastSLQL
             SLDB database = FSLQL.GetDB(dbName);
 
             if (arguments.Length > 3)
-            {
                 EVLSupport.ChangeByFormat(database, arguments);
-            }
 
             return CommandStatus.InvalidArgumentFormatOrUnexpectedException;
         }
