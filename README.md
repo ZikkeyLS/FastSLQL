@@ -10,7 +10,7 @@ Only the local version is available now.
 
 ## How to use
 
-  **Initialize FSLQL:**
+  **Initialize FSLQL**
 
     FSLQL.Load(string dbDirectory = "")
     
