@@ -31,6 +31,9 @@ namespace FastSLQL.Format
         {
             StringBuilder builder = new StringBuilder();
 
+            if (arguments.Count == 1)
+                return arguments[0];
+
             builder.Append("(");
 
             for (int i = 0; i < arguments.Count; i++)
