@@ -29,10 +29,10 @@ namespace FastSLQL.Format
 
         public override string ToString()
         {
-            StringBuilder builder = new StringBuilder();
-
             if (arguments.Count == 1)
                 return arguments[0];
+
+            StringBuilder builder = new StringBuilder();
 
             builder.Append("(");
 
