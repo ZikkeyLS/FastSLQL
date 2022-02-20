@@ -25,7 +25,9 @@ namespace FastSLQL
 
             if (int.TryParse(type, out int _index))
             {
-                result.Add(database.GetElement(_index));
+                string indexedResult = database.GetElement(_index);
+                if(indexedResult != null)
+                    result.Add(indexedResult);
                 return result.ToArray();
             }
 

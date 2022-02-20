@@ -13,7 +13,8 @@ namespace FastSLQL.Support
                 List<string> argumentsValues = new List<string>();
 
                 for (int i = FSLQLSettings.LongSetupLenght; i < arguments.Length; i++)
-                    argumentsValues.Add(arguments[i]);
+                    if(arguments[i] != "")
+                        argumentsValues.Add(arguments[i]);
 
                 result.AddRange(database.GetElements(argumentsValues.ToArray()));
             }
@@ -31,7 +32,8 @@ namespace FastSLQL.Support
                 List<string> argumentsValues = new List<string>();
 
                 for (int i = FSLQLSettings.LongSetupLenght; i < arguments.Length; i++)
-                    argumentsValues.Add(arguments[i]);
+                    if (arguments[i] != "")
+                        argumentsValues.Add(arguments[i]);
 
                 string[] filteredElements = database.GetElements(argumentsValues.ToArray());
 
@@ -67,7 +69,8 @@ namespace FastSLQL.Support
                 List<string> argumentsValues = new List<string>();
 
                 for (int i = FSLQLSettings.LongSetupLenght; i < arguments.Length; i++)
-                    argumentsValues.Add(arguments[i]);
+                    if (arguments[i] != "")
+                        argumentsValues.Add(arguments[i]);
 
                 string[] filteredElements = database.GetElements(argumentsValues.ToArray());
 
@@ -100,7 +103,8 @@ namespace FastSLQL.Support
                 List<string> argumentsValues = new List<string>();
 
                 for (int i = FSLQLSettings.LongSetupLenght; i < arguments.Length; i++)
-                    argumentsValues.Add(arguments[i]);
+                    if (arguments[i] != "")
+                        argumentsValues.Add(arguments[i]);
 
                 result.Add(database.GetElements(argumentsValues.ToArray()).Length.ToString());
             }

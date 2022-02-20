@@ -52,10 +52,10 @@ namespace FastSLQL
             ReadCheck();
 
             index += FSLQLSettings.LongSetupLenght; // skip information data and go to values
-            if (_data.Count >= index)
+            if (_data.Count >= index && _data[index - 1] != "")
                 return _data[index - 1];
 
-            return "";
+            return null;
         }
 
         public int GetElementIndex(string element)
@@ -109,12 +109,13 @@ namespace FastSLQL
                 File.Delete(_oldFile);
         }
 
-        public void WriteDBName(string name)
+        public void WriteDBName(string name, bool rename = false)
         {
             ReadCheck();
             _data[0] = name;
             RewriteData();
-            RenameFile(name);
+            if (rename)
+                RenameFile(name);
         }
 
         public void WriteDBStructure(string structure)

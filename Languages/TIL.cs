@@ -42,7 +42,7 @@ namespace FastSLQL
 
             if(instruction == "NAME")
             {
-                FSLQL.GetDB(dbName).WriteDBName(data);
+                FSLQL.GetDB(dbName).WriteDBName(data, true);
                 return CommandStatus.EditNameSuccess;
             }
             else if(instruction == "STRUCTURE" && arguments.Length > 1 && data[0] == '(')

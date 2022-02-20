@@ -30,9 +30,9 @@ namespace FastSLQL.Format
         #endregion
 
         #region Additive
-        public static string ParseFilters(string[] filters)
+        public static string ParseFilters(string[] filters = null)
         {
-            if (filters.Length > 0)
+            if (filters != null)
             {
                 StringBuilder builder = new StringBuilder();
 
