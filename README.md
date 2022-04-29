@@ -1,7 +1,7 @@
 # FastSLQL
 
 This DBMS is based on SLQL: https://github.com/ZikkeyLS/SLQL
-Only the local version is available now.
+Network version is under development: https://github.com/ZikkeyLS/FastSLQL-NetworkAPI
 
 ### Main features
 * **Type independent** - you regulate what types should be written;
