@@ -1,29 +1,38 @@
 ﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 
 namespace FastSLQL.Format
 {
     internal static class DBFileSystem
     {
-            public static void Serialize(string fileName, string[] data)
+        public static void Pack(string fileName, string[] data)
+        {
+            using FileStream stream = File.Open(fileName, FileMode.OpenOrCreate);
+            using BinaryWriter writer = new BinaryWriter(stream, Encoding.UTF8, false);
+
+            for (int i = 0; i < data.Length; i++)
             {
-                BinaryFormatter bf = new BinaryFormatter();
-                using (Stream writer = new FileStream(fileName, FileMode.OpenOrCreate))
+                writer.Write(data[i]);
+            }
+        }
+
+        public static string[] Unpack(string fileName)
+        {
+            ulong linesCount = (ulong)File.ReadAllLines(fileName).LongLength;
+
+            string[] data = new string[linesCount];
+
+            using (FileStream stream = File.Open(fileName, FileMode.OpenOrCreate))
+            {
+                using BinaryReader reader = new BinaryReader(stream, Encoding.UTF8, false);
+
+                for (ulong i = 0; i < (ulong)data.LongLength; i++)
                 {
-                    bf.Serialize(writer, data);
+                    data[i] = reader.ReadString();
                 }
             }
 
-            public static string[] DeSerialize(string fileName)
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                using (Stream reader = new FileStream(fileName, FileMode.Open))
-                {
-                    if (reader.Length <= 0)
-                        return new string[] { "", "", "" };
-
-                    return (string[])bf.Deserialize(reader);
-                }
-            }
+            return data;
+        }
     }
 }

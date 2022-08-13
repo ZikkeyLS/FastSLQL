@@ -14,7 +14,7 @@ namespace FastSLQL
         private bool _readed = false;
 
         public string[] SplittedStructure { get; private set; }
-        private List<int[]> StructuresParametres = new List<int[]>();
+        private List<int[]> StructureParameters = new List<int[]>();
 
         public string Directory => _dbFile.FullName;
         public string AssemblyName => Path.GetFileNameWithoutExtension(_dbFile.Name).ToLower();
@@ -29,7 +29,7 @@ namespace FastSLQL
         {
             _readed = true;
 
-            _data = DBFileSystem.DeSerialize(Directory).ToList();
+            _data = DBFileSystem.Unpack(Directory).ToList();
 
             UpdateParametres();
         }
@@ -97,7 +97,7 @@ namespace FastSLQL
         #region Write
         private void RewriteData()
         {
-            DBFileSystem.Serialize(Directory, Data);
+            DBFileSystem.Pack(Directory, Data);
         }
 
         private void RenameFile(string name)
@@ -174,7 +174,7 @@ namespace FastSLQL
             SplittedStructure = GetDBStructure().Split(" | ");
 
             for (int i = 0; i < SplittedStructure.Length; i++)
-                StructuresParametres.Add(SLDBSupport.GetStructureParametres(SplittedStructure[i]));
+                StructureParameters.Add(SLDBSupport.GetStructureParametres(SplittedStructure[i]));
         }
         #endregion
 
@@ -212,7 +212,7 @@ namespace FastSLQL
                 for (int a = 0; a < splittedData.Length; a++)
                 {
                     bool _elementsEquals = splittedData[a] == _data[index].Split(" | ")[a].Replace(" ", "");
-                    if (StructuresParametres[a][0] == 1 && _elementsEquals)
+                    if (StructureParameters[a][0] == 1 && _elementsEquals)
                         return false;
                 }
 
@@ -227,8 +227,8 @@ namespace FastSLQL
         {
             for (int index = 0; index < splittedData.Length; index++)
             {
-                if (!SLDBSupport.MinLenghtCorrect(StructuresParametres[index][1], splittedData[index])
-                    || !SLDBSupport.MaxLenghtCorrect(StructuresParametres[index][FSLQLSettings.ShortSetupLenght], splittedData[index]))
+                if (!SLDBSupport.MinLenghtCorrect(StructureParameters[index][1], splittedData[index])
+                    || !SLDBSupport.MaxLenghtCorrect(StructureParameters[index][FSLQLSettings.ShortSetupLenght], splittedData[index]))
                     return false;
             }
 
